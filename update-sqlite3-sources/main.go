@@ -101,5 +101,11 @@ func main() {
 				log.Fatalln(err)
 			}
 		})()
+		targetFileBases = slices.DeleteFunc(targetFileBases, func(s string) bool {
+			return s == base
+		})
+	}
+	if len(targetFileBases) > 0 {
+		log.Fatalf("Some files are not found: %v", targetFileBases)
 	}
 }
